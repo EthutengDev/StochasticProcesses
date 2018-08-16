@@ -2,12 +2,9 @@ poissonProcessSim <- function(i, l, t, lambda){
   x = numeric(); #initialise X
   x[1] = i; #initial state of the process
   tl = numeric(); #initialise arrival times
-  tl[1] = 0; #t0
-  
-  for (j in 2:l) {
-    #Generate arrival times : t0 = 0, t1 = e1, t2 = e1 + e2, ..., tl = e1 + ... + el
-    tl[j] = sum(tl) + rexp(1, lambda);
-  }
+ 
+  #Generate arrival times : t0 = 0, t1 = e1, t2 = e1 + e2, ..., tl = e1 + ... + el
+  tl = c(0, cumsum(rexp(l-1,lambda)))
   
   for (j in 1:length(t)) {
     for (k in 2:length(tl)) {
