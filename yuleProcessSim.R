@@ -1,4 +1,4 @@
-yuleProcessSim <- function(i, l, t, lambda){
+yuleProcessSim <- function(i, l, t){
   x = numeric(); #initialise X
   x[1] = i; #initial state of the process
   tl = numeric(); #initialise arrival times
@@ -14,13 +14,13 @@ yuleProcessSim <- function(i, l, t, lambda){
     }
   }
   
-  #return simulated poisson process
+  #return simulated Yule process
   return(x);
   
 }
 
 #example
 arrivalTimes = seq(from=0, to=300, by=1);
-poissonSim = poissonProcessSim(i = 2, l = 25, t = arrivalTimes, lambda = 0.3);
+yuleSim = yuleProcessSim(i = 2, l = 25, t = arrivalTimes, lambda = 0.3);
 
-plot(poissonSim, type = 'l', ylab = 'X(t)', xlab = 't', main = 'Simulated Poisson Process')
+plot(yuleSim, type = 'l', ylab = 'X(t)', xlab = 't', main = 'Simulated Yule Process')
